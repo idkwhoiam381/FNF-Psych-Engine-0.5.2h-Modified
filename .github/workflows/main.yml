@@ -33,10 +33,7 @@ jobs:
         uses: actions/setup-java@main
         with:
           distribution: 'zulu'
-          java-version: 18
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@main
+          java-version: 11
 
       - name: Setup Haxe
         uses: krdlab/setup-haxe@v1.2.0
@@ -66,7 +63,7 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile
-        run: haxelib run lime build android --app-version="4.0.0-${{ github.run_id}}"
+        run: haxelib run lime build android -final
 
       - name: Publish Artifact
         uses: actions/upload-artifact@main
